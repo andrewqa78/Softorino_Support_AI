@@ -7,7 +7,8 @@ All knowledge base files are in `/Users/test/Softorino_Support_AI/knowledge_base
 This directory may grow over time. Do not rely on a hardcoded list of files -- always list the directory contents first to see all available files.
 
 Key files that are always present:
-- `global_rules.md` -- support rules, escalation guidelines, reply templates, official links. Always read this first.
+- `active_product_issues.md` -- **TEMPORARY issues only.** Read this BEFORE anything else. If the customer's issue matches an entry here, follow that entry's instructions and skip standard troubleshooting.
+- `global_rules.md` -- support rules, escalation guidelines, reply templates, official links.
 - `activation_and_license.md` -- Universal License, dashboard issues, error codes.
 - `Softorino_Products.md` -- product reference for identifying unknown products.
 
@@ -15,12 +16,13 @@ All other files are named after the product they cover (e.g. `waltr_pro.md`, `sy
 
 ## How to read files before acting
 
-1. **Always read `global_rules.md` first** -- it applies to every ticket.
-2. **List the directory** to see all available files.
-3. **Identify the product** in the ticket, then read the matching file.
-4. If the ticket involves activation, dashboard errors, or license issues, also read `activation_and_license.md`.
-5. If the product is unclear, read `Softorino_Products.md` to identify it first.
-6. **Do not read files unrelated to the ticket.**
+1. **Always read `active_product_issues.md` first** -- it contains temporary known issues that override normal troubleshooting. If the ticket matches an active issue, stop and follow that entry.
+2. **Read `global_rules.md`** -- it applies to every ticket.
+3. **List the directory** to see all available files.
+4. **Identify the product** in the ticket, then read the matching file.
+5. If the ticket involves activation, dashboard errors, or license issues, also read `activation_and_license.md`.
+6. If the product is unclear, read `Softorino_Products.md` to identify it first.
+7. **Do not read files unrelated to the ticket.**
 
 ## Your main task
 
