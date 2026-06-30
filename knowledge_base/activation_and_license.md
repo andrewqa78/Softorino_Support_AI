@@ -19,6 +19,42 @@
 
 ---
 
+## Current App Versions (License Dashboard snapshot, 2026-07-01)
+
+Use this to check whether a customer's reported version is current before telling them to "update to the latest version." Do not assume a version is outdated without checking this table first (same principle as the iTunes version rule below).
+
+| App | Current Version | Last Release Date |
+|---|---|---|
+| AltTunes (Windows) | 1.1.5 | February 2026 |
+| Beamer (Mac) | 4.2.0 | September 2025 |
+| CleanAppsNow (Mac) | 1.0.4 | September 2025 |
+| DeskMinder | 2.0.9 | January 2026 |
+| Folder Colorizer (Mac) | 4.11.8 | September 2025 |
+| Folder Colorizer 2 (Windows) | 4.1.6 | March 2026 |
+| iRingg (Mac) | 4.0.16 | January 2022 |
+| iRingg (Windows) | 4.3.11 | February 2026 |
+| Memory Optimizer 2 (Windows) | 4.1.3 | October 2023 |
+| PicFindr | 1.6.13 | September 2025 |
+| Softorino Youtube Converter 2 (Mac) | 4.0.22 | February 2023 |
+| Softorino Youtube Converter 2 (Windows) | 4.1.8 | July 2024 |
+| Softorino Youtube Converter PRO (macOS -- Apple Silicon) | 10.2.0 | March 2026 |
+| Softorino Youtube Converter PRO (macOS -- Intel) | 10.2.0 | March 2026 |
+| Softorino Youtube Converter PRO (Windows) | 10.2.0 | March 2026 |
+| Task ForceQuit Pro 2 (Windows) | 4.1.3 | October 2023 |
+| Volume Concierge 2 (Windows) | 4.1.3 | October 2023 |
+| WALTR PRO (Mac) | 4.0.122 | September 2025 |
+| WALTR PRO (Windows) | 4.3.10 | February 2026 |
+
+### Internal Notes on this table
+
+- **WALTR PRO (Mac) is still on 4.0.122 as of this snapshot** -- this is the exact build with the known Monterey/Intel and Sonoma/Apple Silicon crash bugs documented in `waltr_pro.md`. Do not tell affected customers to "update to the latest version" as a fix -- they're already on it.
+- **SYC PRO now ships separate native builds for macOS Apple Silicon and macOS Intel** (both 10.2.0) -- worth confirming whether the Apple Silicon build is a true native binary now, not Rosetta, before repeating the generic Rosetta explanation from `global_rules.md`.
+- **iRingg (Mac) shows a download link and version here (4.0.16, Jan 2022)**, which conflicts with `Softorino_Products.md`'s note that "macOS version: suspended indefinitely -- not available for download." Flagged for Andrew to confirm which is accurate before relying on either in a customer reply.
+- "Softorino Youtube Converter 2" (non-PRO, v4.x) is a separate legacy-style product line from "Softorino Youtube Converter PRO" (v10.x) -- don't confuse the two when checking a customer's version against this table.
+- This table is a point-in-time snapshot from the License Dashboard "Your Applications" view -- re-check against the dashboard if it's been a while since 2026-07-01.
+
+---
+
 ## Universal License — "Reset" vs "Activate" button in the dashboard
 
 ### Summary

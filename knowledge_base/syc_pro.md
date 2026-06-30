@@ -543,3 +543,55 @@ Even manually moving files into the Music media folder does not help -- Music ap
 ### Internal Notes
 
 - Do not overpromise older iPod compatibility.
+
+---
+
+## SYC PRO — "We couldn't verify your license" despite valid, unexpired Universal License (no Reset option in-app)
+
+### Summary
+
+**Product:** SYC PRO for Mac
+**Issue:** SYC PRO shows "We couldn't verify your license. Please try again or buy a Universal License." with only **Retry Activation** and **Buy License** options. No **Reset License** option appears for SYC PRO -- in the app or in the License Dashboard -- even though the customer's Universal License is confirmed active and not expired.
+
+### Symptoms
+
+- Customer has an active, unexpired Universal License (confirmed valid on the backend).
+- Clicking Activate in the License Dashboard sends the customer to a checkout/payment screen, or to an in-app "We couldn't verify your license" screen.
+- In-app activation screen offers only **Retry Activation** and **Buy License** -- no Reset option.
+- License Dashboard shows **Reset License** for other apps under the same account (e.g. WALTR PRO), but only **Activate** for SYC PRO -- because Reset only appears after a first successful activation, and SYC PRO never completed one.
+- Standard "click Reset, then Activate" troubleshooting does not apply here since the Reset state never exists for this app.
+
+### Common Customer Phrases
+
+- "It kicks me out to a pop-up to pay for a subscription."
+- "We couldn't verify your license."
+- "I don't get the option of Reset License, I only see Reset under WALTR PRO."
+
+### Questions to Ask
+
+- What is the exact license ID and expiration date shown in the dashboard?
+- Can you screenshot the exact in-app screen and message after clicking Activate?
+- Does Reset License appear for any other app under the same account?
+- Confirm the customer is on the matching OS tab (macOS) in the dashboard.
+
+### Root Cause Candidates
+
+- Backend entitlement is active, but SYC PRO's local activation handshake never completes -- so the app never reaches the "activated" state needed for Reset to appear in the dashboard.
+- Local license files may not be getting created/stored on the Mac at all -- under investigation via the SYC PRO License folder (`~/Softorino/SYC PRO/License/`).
+
+### Resolution
+
+1. Confirm the license/subscription is active and not expired on the backend.
+2. Standard dashboard Activate/Reset troubleshooting will not resolve this -- Reset never appears because first activation never completed. Do not keep repeating it.
+3. Escalate to tech team if not already done.
+4. Ask the customer to check local license storage on their Mac: Finder → Home folder → Softorino → SYC PRO → License, and report whether the folder exists and whether it contains any files. This determines whether SYC PRO is failing to write local license files at all.
+
+### Escalate If
+
+- License folder is empty or missing -- points to SYC PRO failing to create local license files (likely app-side bug, not user error).
+- License folder has files but in-app activation still fails -- points to a different local conflict needing further investigation.
+
+### Internal Notes
+
+- Reference ticket: Robert Taylor, license ID SOF260221-845180112, expires 2027-02-21. Escalated by Amy → @AndrewQA, June 2026. **Unresolved at time of writing** -- investigation ongoing (checking local License folder contents on customer's Mac).
+- Do not tell the customer this is confirmed a backend issue -- root cause not yet confirmed, still investigating the local/client side.

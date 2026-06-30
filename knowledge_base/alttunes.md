@@ -212,6 +212,62 @@ If device still does not appear in iTunes after all steps:
 ### Internal Notes
 
 - For 50GB/10k photos, items should start appearing within minutes, not hours.
+- If the customer's iPhone is running a beta iOS version, check the dedicated entry below ("AltTunes for Windows — iOS beta compatibility issues") before assuming a generic stuck-state cause.
+
+---
+
+## AltTunes for Windows — iOS beta compatibility issues (stuck "Retrieving data...", encrypted backup toggle freezes)
+
+### Summary
+
+**Product:** AltTunes for Windows
+**Issue:** Customer's iPhone running an iOS beta version (confirmed: iOS 27 beta) causes AltTunes to get stuck on "Retrieving data..." indefinitely, fails to load photos, and freezes when toggling the encrypted backup setting. A second device on a stable iOS version, on the same PC and AltTunes install, worked normally within seconds.
+
+### Symptoms
+
+- AltTunes shows "Retrieving data..." indefinitely (multiple hours) for a device running an iOS beta.
+- Same PC, same AltTunes install -- a different device on a stable iOS version loads normally and quickly.
+- Toggling "encrypted backups" off while the beta-iOS device is connected can freeze the app.
+- Standard driver/iTunes/settings-file troubleshooting does not resolve it.
+- Library size alone doesn't explain the delay -- in the confirmed case, the device with MORE photos (stable iOS, ~13,000) loaded within seconds, while the device with FEWER photos (beta iOS, ~8,000) never loaded.
+
+### Common Customer Phrases
+
+- "Stuck on Retrieving data for hours."
+- "My wife's phone loaded in seconds, mine never did."
+- "Turning off encrypted backups froze the app."
+- "I'm on the iOS beta."
+
+### Questions to Ask
+
+- Is the affected iPhone running a beta iOS version? Which one?
+- Does a different device on a stable iOS version work normally on the same PC/AltTunes install?
+- Has standard driver/settings-file troubleshooting already been completed? (see "AltTunes for Windows — Photos stuck on Retrieving Data" above)
+
+### Root Cause Candidates
+
+- Known compatibility issue between AltTunes and iOS beta builds (confirmed with iOS 27 beta). Apple changes device communication behavior throughout the beta cycle, which can break AltTunes' data retrieval and backup-toggle functions.
+- Not related to license, installation, Windows setup, or library size -- a stable-iOS device on the same setup works normally.
+
+### Resolution
+
+1. Complete standard troubleshooting first (see "AltTunes for Windows — Photos stuck on Retrieving Data") to rule out the generic stuck-state cause.
+2. If the device is confirmed on a beta iOS version, and a stable-iOS device works fine on the same PC: explain this is a known iOS-beta compatibility limitation, not a license, installation, or Windows issue.
+3. Do not promise an ETA -- compatibility work is planned closer to the official iOS release, but Apple keeps changing beta behavior, so nothing can be guaranteed mid-beta.
+4. If the customer needs to back up the affected device now: suggest waiting for the public iOS release, or temporarily using a different computer/device if available.
+5. For re-running an export to recover files missed in an earlier interrupted export: AltTunes does not skip duplicates automatically -- exporting to the same folder can create duplicate files. Recommend exporting to a new, empty folder and comparing/merging results manually afterward.
+
+### Escalate If
+
+- Customer is on a stable (non-beta) iOS release and still reproduces this exact pattern.
+- Multiple customers report the same issue on the same beta iOS version -- log for dev team pattern tracking.
+
+### Internal Notes
+
+- Confirmed by @AndrewQA: known compatibility issue with iOS 27 beta specifically. No guaranteed compatibility with any iOS beta -- Apple changes beta behavior throughout the cycle.
+- Reference ticket: Dillon, AltTunes for Windows, June 2026 -- confirmed via side-by-side test on the same PC (beta-iOS device stuck for hours; stable-iOS device with a larger library loaded in seconds).
+- AltTunes does not deduplicate exports -- re-running an export to the same folder can create duplicates depending on Windows file-naming behavior. Always recommend a new empty folder for re-exports.
+- Cross-reference: "AltTunes for Windows — Photos stuck on Retrieving Data" above for the generic (non-beta) stuck-state troubleshooting path.
 
 ---
 

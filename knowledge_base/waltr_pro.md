@@ -579,6 +579,68 @@ If customer has already done a manual clean reinstall AND crash persists:
 
 ---
 
+## WALTR PRO for Mac — Frequent "quit unexpectedly" crashes requiring repeated license reset + unreliable Wi-Fi detection + erratic EPUB transfer (v4.0.122)
+
+### Summary
+
+**Product:** WALTR PRO for Mac
+**Issue:** Long-time Universal License customer reports WALTR PRO (v4.0.122) crashing frequently with "quit unexpectedly," requiring a full license reset every time it happens. Also reports Wi-Fi device detection no longer working (USB-only) and erratic EPUB transfers. Investigation in progress -- not yet resolved.
+
+### Symptoms
+
+- WALTR PRO quits unexpectedly with no further error detail; happens frequently, not as an isolated incident.
+- Customer has to fully reset the license after each crash to get the app working again.
+- USB connection works and "Show this iPhone when on Wi-Fi" is enabled in both Finder and WALTR PRO Settings, but the device does not appear over Wi-Fi once unplugged.
+- Affects multiple phones tested on the same Mac -- not device-specific.
+- EPUB/book transfers are also erratic and don't always complete successfully.
+- Customer is a long-time Universal License holder on a MacBook Air, WALTR PRO v4.0.122.
+
+### Common Customer Phrases
+
+- "WALTR PRO quit unexpectedly."
+- "My phone has permission to connect via Wi-Fi but doesn't."
+- "It connects via wire but won't retain the connection on Wi-Fi."
+- "I have to completely reset the license when it stops working."
+- "Transferring epub (books) ... is also erratic and doesn't always work."
+
+### Questions to Ask
+
+- Disconnect USB -- does the iPhone still appear under Finder → Locations over Wi-Fi? This isolates a macOS/Apple discovery problem from a WALTR PRO-specific one.
+- Does the EPUB transfer fail outright, or complete but the book doesn't appear afterward? All EPUBs or only certain ones? Can they share a sample file that reproduces it?
+- Mac chip and macOS version?
+- Does the crash happen on launch, on file drop, or during a transfer specifically?
+- Can they provide the Console.app crash log?
+
+### Root Cause Candidates
+
+- Possibly the same underlying v4.0.122 build crash already confirmed on Intel Monterey (on launch/file drop) and on Apple Silicon Sonoma via Rosetta (during transfer) -- see cross-referenced entries below. Needs a Console.app crash log to confirm the EXC_BAD_ACCESS at 0x1c signature.
+- Wi-Fi: WALTR PRO relies on the same Apple Wi-Fi device-discovery mechanism as Finder. If Finder itself can't keep the device visible over Wi-Fi, the failure is at the macOS/Apple level, not WALTR PRO.
+- Needing a license reset after every crash suggests local license/session state isn't surviving an abnormal app termination -- a different mechanism than a normal activation failure.
+- EPUB erratic transfer not yet diagnosed -- unclear if it's a transfer failure or a post-transfer visibility issue.
+
+### Resolution (in progress -- escalated, not yet confirmed)
+
+1. Get the Console.app crash log to check whether this matches the known v4.0.122 EXC_BAD_ACCESS crash instead of repeating generic reinstall steps the customer has already done.
+2. Isolate the Wi-Fi issue at the OS level first: ask the customer to disconnect USB and check whether the iPhone still appears under Finder → Locations over Wi-Fi. If it disappears there too, it's a macOS/Apple-level issue, not WALTR PRO.
+3. For EPUB, clarify the failure mode (transfer fails vs. file doesn't appear after) and request a sample reproducing file.
+4. Do not repeat standard reinstall / Wi-Fi-checkbox steps the customer has already confirmed doing.
+5. Do not send an earlier-versions/legacy download link to an active Universal License subscriber -- it blocks them from logging in and activating, since the dashboard issues credentials for the current build. Use the official current link (https://ushining.softorino.com/download.php?abbr=wpm) or have them reinstall via the License Dashboard.
+
+### Escalate If
+
+- Crash log shows a different signature than the known v4.0.122 EXC_BAD_ACCESS bug.
+- Finder also fails to retain the device over Wi-Fi -- explain as an Apple-level issue; but if it does NOT fail in Finder and only fails in WALTR PRO, treat as WALTR PRO-specific and escalate further.
+- Long-running paid customer with a confirmed unresolved issue over an extended period -- flag internally as a possible goodwill-extension candidate for the human agent to decide; do not offer this to the customer directly.
+
+### Internal Notes
+
+- Reference ticket: Juliet Atkin, WALTR PRO for Mac v4.0.122, escalated by support agent Darreon → @AndrewQA, June 2026. Unresolved at time of writing.
+- **Agent mistake to avoid repeating:** an earlier reply sent the customer the legacy download link (`waltrpromac_3.10.98.dmg`) as a troubleshooting step. Her Universal License credentials are tied to the current build (4.0.122), so the older version couldn't be activated/logged into -- this wasted a full reply cycle. Never send earlier-versions links to active Universal License subscribers; same rule already documented for WALTR PRO Windows new-install crashes applies here too.
+- Customer also asked about AltTunes for Mac release timing -- no ETA exists. Standard "no ETA, still in development" response applies; do not give a date.
+- Cross-reference: "WALTR PRO for Mac — Crash on launch/file drop on Intel Monterey" and "WALTR PRO for Mac — Crash during file transfer on Apple Silicon via Rosetta / macOS Sonoma (v4.0.122)" -- both confirmed v4.0.122 bugs. Check whether this case matches either signature once a crash log is obtained.
+
+---
+
 ## WALTR PRO — Music transferred to Apple Music / cannot choose third-party app destination (e.g. Evermusic)
 
 ### Summary
