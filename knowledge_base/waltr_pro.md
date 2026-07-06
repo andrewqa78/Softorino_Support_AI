@@ -641,6 +641,64 @@ If customer has already done a manual clean reinstall AND crash persists:
 
 ---
 
+## WALTR PRO for Windows — Files save to a local folder instead of transferring to iPad/iPhone (device not properly detected)
+
+### Summary
+
+**Product:** WALTR PRO for Windows
+**Issue:** WALTR PRO used to transfer files directly to the connected iPad/iPhone, but now shows "Added to local folder" / "Convert to local folder" and saves everything to a folder on the PC instead. In the confirmed case, the root cause was that WALTR PRO wasn't properly detecting the device on that specific Windows machine, even though Windows/File Explorer could see it.
+
+### Symptoms
+
+- WALTR PRO used to transfer files (e.g. MKV, MP4) directly into the device's TV/Video app; it now shows "Added to local folder" / "Convert to local folder," and the files never reach the device.
+- Using "Where are my files?" or browsing to change the destination just returns to a folder on the computer -- the iPad is not offered as a destination at all.
+- The customer can see the iPad in Windows Explorer / Device Manager, and the "Trust This Computer" prompt on the iPad was confirmed, but WALTR PRO itself does not detect/list the device as a transfer target.
+- The same iPad, cable, and Universal License activate and work correctly with WALTR PRO on a different Windows laptop -- confirming the issue is specific to one machine's environment, not the iPad or the license.
+- Changing cables (multiple tested) and disabling VPN did not resolve it.
+
+### Common Customer Phrases
+
+- "It's saving to a local folder on my laptop, not my iPad."
+- "It used to load files onto my iPad and now it just goes to Downloads."
+- "Added to local folder" / "Convert to local folder."
+- "Browsing just brings me back to my computer -- the iPad isn't showing as a destination."
+- "It works fine on my other laptop with the same iPad."
+
+### Questions to Ask
+
+- Does the same device work with WALTR PRO on a different computer? (critical -- isolates device-specific vs. machine-specific)
+- Is iTunes installed on the affected machine? Does the iPad appear in iTunes when connected via USB?
+- Does the "Trust This Computer" prompt appear and get confirmed on the iPad?
+- What file types are being transferred (video/audio/books)?
+
+### Root Cause Candidates
+
+- WALTR PRO isn't detecting the device at all on the affected machine -- when no device is recognized, WALTR PRO falls back to "Added to local folder" instead of clearly stating the device isn't connected. This can look like a destination-setting problem when it's actually a detection failure.
+- Apple driver / iTunes-level issue specific to that Windows machine -- see "AltTunes / WALTR PRO for Windows — Device visible in Windows but not in iTunes (advanced driver repair)" in `alttunes.md` for the full two-scenario diagnostic and fix path.
+- Not a license or activation issue -- resetting/reactivating the Universal License does not affect device detection.
+
+### Resolution
+
+1. If another computer is available, confirm the device works there with WALTR PRO -- fastest way to isolate a machine-specific driver issue from a device/license issue.
+2. Check whether iTunes is installed on the affected machine and whether it detects the iPad via USB. This determines which scenario applies in the cross-referenced driver-repair entry.
+3. If iTunes also fails to detect the device: follow the advanced Apple driver repair steps in "AltTunes / WALTR PRO for Windows — Device visible in Windows but not in iTunes (advanced driver repair)."
+4. If iTunes does detect it but WALTR PRO does not: this points to a WALTR PRO-specific detection issue on that machine -- escalate with iTunes version, WALTR PRO version, and Windows version.
+5. Do not treat "Added to local folder" as a destination-setting issue when the device isn't being detected at all -- resetting or reactivating the license will not fix a detection failure.
+
+### Escalate If
+
+- iTunes detects the device but WALTR PRO still does not, after standard troubleshooting.
+- Advanced driver repair steps completed and the device is still not detected by either iTunes or WALTR PRO.
+
+### Internal Notes
+
+- Reference ticket: Joyce Young, WALTR PRO for Windows, June 2026 -- confirmed working on a second laptop with the identical iPad, isolating the issue to one machine's Windows/Apple driver environment.
+- Cross-reference: "AltTunes / WALTR PRO for Windows — Device visible in Windows but not in iTunes (advanced driver repair)" in `alttunes.md` for the full diagnostic and fix path once iTunes detection status is known.
+- Do not send the customer down license-reset or reinstall loops before confirming whether the device is actually being detected at the OS/iTunes level -- it wastes reply cycles and frustrates long-time customers.
+- This ticket also involved a Waltr 2 troubleshooting detour that used the wrong uninstall instructions -- see the note in "Waltr 2 Legacy — User sent wrong download link / WALTR PRO installed instead of Waltr 2" about Waltr 2's actual folder structure.
+
+---
+
 ## WALTR PRO — Music transferred to Apple Music / cannot choose third-party app destination (e.g. Evermusic)
 
 ### Summary
@@ -742,6 +800,7 @@ If customer has already done a manual clean reinstall AND crash persists:
 - Waltr 2 is legacy. Be honest that it may not work perfectly on newer OS versions.
 - Do not send the WALTR PRO link (waltrpromac_*.dmg) when the user has a Waltr 2 license.
 - Always verify the app name in the user's screenshot before sending an activation key.
+- **Waltr 2's data folder is structured differently from WALTR PRO/AltTunes.** `C:\ProgramData\Softorino\Waltr2\` typically only contains a single `license.dat` (plus `Devices.dat`, `Settings.dat`, and `Crash`/`Logs`/`Update` folders) -- there is no `license2.dat` or `license3.dat`. Do not give Waltr 2 users the generic "delete everything except license.dat, license2.dat, license3.dat" instruction copied from WALTR PRO/AltTunes -- those files don't exist for Waltr 2 and the mismatch confuses users into mishandling the one license file that does exist. Confirmed case: customer couldn't locate license2/3, isolated the wrong file, and ended up with Waltr 2 crashing on launch.
 
 ---
 
