@@ -161,6 +161,60 @@
 
 ---
 
+## Billing — Subscription under a different email, charged to customer's PayPal (gifted subscription)
+
+### Summary
+
+**Issue:** Customer's PayPal is charged for a subscription that was originally registered under a different email address -- typically a gift subscription set up for a friend. The charge cannot be found in FastSpring under the customer's own email.
+
+### Symptoms
+
+- Customer provides a PayPal receipt showing a Softorino charge.
+- FastSpring search by the customer's email returns no matching order.
+- Charge is real and recurring.
+- Customer may not initially remember the subscription was created under a different email.
+
+### Common Customer Phrases
+
+- "I can't find this charge on my account."
+- "I thought I had cancelled but I keep getting charged."
+- "I may have set up a subscription for a friend."
+- "I don't have an email from you but PayPal shows the charge."
+
+### Questions to Ask
+
+- Do you have any other email addresses linked to a Softorino purchase?
+- Did you ever purchase or set up a subscription for someone else?
+- Can you provide the PayPal Transaction ID from the receipt?
+
+### Root Cause
+
+Subscription was created under a different email (e.g., gifted to another person). FastSpring indexed it under that email, not the payer's. Cancellation attempts on the wrong account have no effect -- the charge keeps hitting the payer's PayPal.
+
+### Resolution
+
+1. Search FastSpring by all email addresses the customer provides.
+2. If still not found -- ask for the PayPal Transaction ID.
+3. Escalate to @AndrewQA with the Transaction ID. FastSpring can locate any order by transaction reference regardless of email.
+4. Once found, cancel the subscription and confirm whether any charges fall within the 30-day refund window.
+5. Only the most recent charge within 30 days is eligible for refund. Be clear about this upfront.
+6. If customer requests refunds on older charges (outside 30 days) -- escalate to manager for a goodwill decision. Do not promise anything.
+
+### Escalate If
+
+- Transaction ID provided but order still cannot be located -- may be a different reseller.
+- Customer requests refunds on multiple charges spanning many months -- manager decision required.
+- The subscription is under someone else's email and that person cannot be reached to authorize cancellation -- escalate to @AndrewQA, do not decide yourself.
+
+### Internal Notes
+
+- This case type takes longer than average because FastSpring lookup by Transaction ID requires direct contact with FastSpring support.
+- Do not say "I cannot find this charge" more than once without escalating. Get the Transaction ID on the second exchange at the latest.
+- Past case lesson: support spent multiple months asking for more screenshots instead of going to FastSpring early. The Transaction ID is the key -- get it fast.
+- If the subscription was a gift and the original recipient has medical or personal circumstances preventing them from responding, @AndrewQA may authorize cancellation without their email confirmation. Escalate -- do not make this call yourself.
+
+---
+
 # Subscription Cancellation
 
 ## Cancel Subscription — Full cancellation steps

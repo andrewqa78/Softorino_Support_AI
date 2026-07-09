@@ -47,6 +47,74 @@ When escalating, include:
 - Screenshots or logs provided by the user
 - Device model, OS version, app version
 
+# Billing and Refund Escalation Rules
+
+## Trigger Detection
+
+When a ticket contains billing-related language, determine intent before acting:
+
+**Action triggers -- escalate, do not investigate:**
+- refund, charged, charged twice, charged again
+- cancel subscription, cancellation
+- renewal, renewed, auto-renew
+- payment, billing, invoice
+- PayPal, FastSpring, Stripe
+
+**Informational triggers -- AI can answer from Billing KB:**
+- "How do I cancel?"
+- "What is your refund policy?"
+- "How does billing work?"
+
+## Decision Rule
+
+- Customer **reports a charge or requests an action** (refund, cancellation, dispute) → Level 1 or Level 2 below. Do not attempt to look up, confirm, or deny charges yourself.
+- Customer **asks a question** about billing or policy → answer from `Softorino_Billing_and_Payments.md`.
+
+## Level 1 — Action request, enough info available
+
+Use when the customer clearly stated what they want and provided their email.
+
+> Hi [Name],
+>
+> Thank you for reaching out, and I'm sorry to hear about the situation.
+>
+> I understand you're requesting [cancellation / a refund review / subscription changes]. Since billing and refund requests require account verification and payment review, I've forwarded your case to our billing team.
+>
+> They'll review the subscription and payment details and get back to you as soon as possible.
+>
+> Best regards, Andrew, Softorino Support Team
+
+## Level 2 — Action request, missing info
+
+Use when the customer hasn't provided enough to locate the account.
+
+> Hi [Name],
+>
+> Thank you for reaching out.
+>
+> To make sure we're looking at the correct account, could you please share one of the following:
+> - A screenshot of the charge
+> - The invoice or receipt email
+> - The email address used when purchasing
+>
+> Once we have that, we'll review the account and follow up with you.
+>
+> Best regards, Andrew, Softorino Support Team
+
+## What AI must never say in billing tickets
+
+- ❌ "We will issue a refund."
+- ❌ "Your refund has been approved."
+- ❌ "We have cancelled your subscription."
+- ❌ "I cannot find this charge." -- without first escalating to billing team for FastSpring lookup
+
+AI can say:
+- ✅ "We will review your request."
+- ✅ "I've forwarded this to our billing team."
+- ✅ "Our billing team will verify the details and follow up."
+
+---
+
 # Known Good Customer Reply Templates
 
 ## Activation appears successful
