@@ -559,3 +559,105 @@ Step 3 -- If still not working:
 - Do not ask the customer to "just try again" after they have already tried multiple times.
 - When two licenses exist on the same account, a backend fix is almost always needed. Escalate early rather than repeating the same steps.
 - If the customer mentions "Anniversary Edition" of SYC PRO: this refers to a specific promotional version. Verify with @AndrewQA what build is currently available and how to download it -- do not guess.
+
+---
+
+## Universal License — Refunded subscription still visible in dashboard but cannot activate
+
+### Summary
+
+**Product:** Universal License
+**Issue:** A past refund automatically cancelled the subscription. The license is inactive. But the dashboard still displays it, making the customer believe they have valid access.
+
+### Symptoms
+
+- Customer sees a subscription entry in the dashboard with what looks like a valid expiry date.
+- App fails to activate or shows "no active license."
+- Customer is confused or angry because the dashboard clearly shows a license.
+- Account history shows a past refund.
+
+### Common Customer Phrases
+
+- "I can see my license right here -- why can't I activate?"
+- "The dashboard shows I have a license."
+- "I've reset and activated many times and nothing works."
+- "I've had this for years, it always worked."
+
+### Root Cause
+
+When a refund is processed, FastSpring automatically cancels the subscription. The license becomes inactive immediately. The dashboard continues to display the entry due to the known display bug -- it does not indicate that the subscription was cancelled due to a refund.
+
+### Resolution
+
+1. Check account history for any past refunds on this email before responding.
+2. If a refund was processed: confirm the subscription was cancelled as part of that refund.
+3. Explain to the customer:
+   - The subscription shown in the dashboard was cancelled when the refund was processed.
+   - The license is no longer active -- that is why activation fails.
+   - The dashboard still displaying it is a known display issue.
+4. To use the app again: they need to purchase a new license. Offer the link: https://softorino.com/universal-license
+
+### Escalate If
+
+- No refund found in account history but subscription still shows as unactivatable.
+
+### Internal Notes
+
+- Do NOT open with "you have no license." That reads as an accusation. Open with: "I checked your account and found the explanation." Then explain the refund → auto-cancel chain.
+- Be empathetic -- customers who got a refund years ago often forget, and the dashboard entry genuinely looks like proof of access. Acknowledge the confusion before explaining.
+- This is distinct from the "expired subscription" display bug -- here the subscription was explicitly cancelled by a refund action, not just expired by time.
+
+---
+
+## Universal License — One license = one device; managing multiple Macs
+
+### Summary
+
+**Product:** Universal License
+**Issue:** Customer wants to use one license on multiple Macs simultaneously, or bought a second license by mistake thinking they needed one per device.
+
+### Symptoms
+
+- Customer asks if one license covers more than one computer.
+- Customer accidentally bought a second subscription for a second Mac.
+- Customer cannot identify which license or email is active on a specific machine from inside the app.
+
+### Common Customer Phrases
+
+- "Can I install it on more than one Mac?"
+- "I bought a second license for my MacBook -- do I need to?"
+- "How do I know which license is active on this computer?"
+- "There's no way to see my email from inside the app."
+
+### Root Cause Candidates
+
+- Customer assumes multi-device coverage (like Microsoft 365).
+- Customer bought a second license for a second Mac not realizing the license can be transferred.
+
+### Resolution
+
+**If customer asks about multi-device:**
+1. Clarify: one Universal License = one active device at a time.
+2. Options for a second Mac:
+   - **Transfer:** Reset License on the old device → Activate on the new one. Use both sequentially.
+   - **Second license:** Buy a second subscription to use both Macs simultaneously.
+
+**If customer bought a duplicate by mistake:**
+1. Check if the duplicate is within the 30-day refund window.
+2. If yes and they only need one device: process refund on the duplicate.
+3. If they want to keep both (one per Mac): confirm both are active and explain they work independently under different emails.
+
+**If customer can't identify which email is active on a device:**
+1. There is no way to see the active license email from inside the app -- this is a known UX gap.
+2. Ask the customer to check each email they may have used at softorino.com/submanager.
+3. Confirm which email has the subscription matching the activation period on that device.
+
+### Escalate If
+
+- Customer wants to merge two subscriptions under one email -- not currently possible. Escalate to @AndrewQA.
+
+### Internal Notes
+
+- Universal License is strictly 1 device at a time. Do not imply otherwise.
+- The app does not display the associated email address anywhere in the UI. Only the dashboard shows this. Known UX gap -- customers notice and are frustrated by it.
+- The "1 device" limitation is a common customer complaint vs. competitors. Acknowledge it genuinely rather than dismissing it.

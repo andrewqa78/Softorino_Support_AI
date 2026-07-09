@@ -215,6 +215,56 @@ Subscription was created under a different email (e.g., gifted to another person
 
 ---
 
+## Billing — FastSpring shows no payment but customer has PayPal/bank proof
+
+### Summary
+
+**Product:** Universal License / Billing
+**Issue:** FastSpring reports no successful payment for the customer's email, but the customer has a PayPal receipt or bank statement showing the charge cleared.
+
+### Symptoms
+
+- Customer purchased a license and received a checkout summary or order confirmation.
+- FastSpring search by email returns no completed order.
+- Customer has PayPal or credit card proof showing funds were taken.
+
+### Common Customer Phrases
+
+- "I have proof the payment went through."
+- "My credit card/PayPal shows the charge."
+- "FastSpring says it didn't go through but I was charged."
+- "Why are you saying I didn't pay when I have the receipt?"
+
+### Root Cause Candidates
+
+- Payment initiated but not fully settled -- FastSpring generates an order document before payment completes, which customer may mistake for a receipt. Pre-auth holds look like charges but are voided if payment fails.
+- Payment completed but indexed under a different email in FastSpring.
+- FastSpring processing delay -- payment settled but not yet reflected at time of first lookup.
+
+### Resolution
+
+1. Do NOT tell the customer "the payment didn't go through" after a single FastSpring check. Say: "We're investigating and will follow up."
+2. Ask the customer for:
+   - PayPal Transaction ID (if PayPal was used)
+   - Screenshot of bank or credit card statement showing the charge as fully settled (not pending)
+3. Re-escalate to FastSpring with this proof -- they can trace completed payments even without a matching email.
+4. FastSpring will either confirm the payment and provide the order number, or confirm it was a pre-auth hold that was voided.
+5. If payment confirmed: FastSpring activates the license. Guide the customer to the dashboard.
+6. If payment voided: explain clearly that no funds were captured and the document they saw was generated before payment completed.
+
+### Escalate If
+
+- FastSpring confirms payment completed but license was not generated on our side.
+- Customer insists payment went through but cannot provide a Transaction ID or settled bank statement.
+
+### Internal Notes
+
+- A pre-authorization hold is NOT a charge. FastSpring generates a checkout document before payment completes -- this looks like a receipt but does not confirm the payment succeeded.
+- Never relay FastSpring's "no payment found" response directly to the customer after only one search. Always ask for proof first.
+- Correct holding phrase: "We're checking with our payment team and will follow up shortly."
+
+---
+
 # Subscription Cancellation
 
 ## Cancel Subscription — Full cancellation steps
