@@ -398,3 +398,164 @@ Step 3 -- If still not working:
 - Error 509 = wrong or expired activation token. Almost always caused by clicking Activate twice on a stale dashboard page.
 - Known bug; fix is planned.
 - Do not ask macOS users to delete license files manually -- this is not possible. Only SYC PRO for macOS has a built-in option for local license file removal.
+
+---
+
+## Universal License Dashboard — Expired subscriptions still showing as active
+
+### Summary
+
+**Product:** Universal License Dashboard
+**Issue:** Dashboard displays cancelled or expired subscriptions alongside the active one, making it appear as if the customer has multiple active charges.
+
+### Symptoms
+
+- Dashboard shows 2 or more subscription entries.
+- Customer believes they are being billed for multiple subscriptions.
+- Old subscriptions show seemingly valid expiry dates even though they were cancelled.
+
+### Common Customer Phrases
+
+- "Why am I seeing 2 active subscriptions?"
+- "Am I being charged for two accounts?"
+- "Please cancel the second subscription."
+- "I want a refund for the duplicate."
+
+### Questions to Ask
+
+- Can they share a screenshot of the dashboard?
+- What email is the account under?
+
+### Root Cause Candidates
+
+- Known dashboard UI bug: expired and cancelled subscriptions are not consistently filtered out. They remain visible with misleading expiry dates.
+
+### Resolution
+
+1. Check the backend to confirm which subscriptions are actually active and being billed.
+2. Tell the customer which one is active and when it expires.
+3. Confirm that the other entries are NOT being billed -- they are display artefacts from past subscriptions.
+4. Explain this is a known display issue the team is aware of.
+5. If the customer insists a specific old subscription is still charging them: locate the charge in FastSpring before confirming or denying.
+
+### Escalate If
+
+- Backend confirms more than one subscription is genuinely active on the same account.
+- Customer provides a PayPal or bank charge that matches a subscription that should be inactive.
+
+### Internal Notes
+
+- Do not tell the customer this is "expected behavior" -- acknowledge it as a known display issue.
+- Never confirm to a customer they are not being charged without first verifying in the backend.
+
+---
+
+## Universal License — Magic link / login email not received
+
+### Summary
+
+**Product:** Universal License Dashboard
+**Issue:** Customer enters their email at softorino.com/submanager but never receives the login email.
+
+### Symptoms
+
+- Customer cannot access their dashboard at all.
+- No magic link email arrives after multiple attempts.
+- May have been waiting minutes or hours.
+- Contact form on the site may also appear non-functional.
+
+### Common Customer Phrases
+
+- "I never receive the login email."
+- "No code or credentials arrive."
+- "I can't access my account."
+- "When I click contact us, nothing happens."
+
+### Questions to Ask
+
+- Which exact email did they enter?
+- Have they checked their spam/junk folder?
+- Do they have another email the purchase might be under?
+
+### Root Cause Candidates
+
+- Email entered doesn't match any account (typo or wrong address).
+- Magic link landed in spam/junk.
+- Email provider blocking automated mail.
+- Customer is entering a different email than the one used to purchase.
+
+### Resolution
+
+1. Ask them to check spam/junk immediately -- magic links often land there.
+2. Ask them to confirm the exact email address they entered.
+3. If not in spam: ask whether they have another email a Softorino purchase could be under.
+4. Try resending the magic link from the backend to their confirmed email.
+5. If confirmed correct but still not arriving after multiple attempts: escalate to @AndrewQA -- possible mail delivery issue.
+
+### Escalate If
+
+- Email confirmed correct, spam checked, still not received after multiple attempts.
+- Customer has no other email addresses to try.
+- Multiple users report the same issue simultaneously (possible mail delivery outage).
+
+### Internal Notes
+
+- "Can't access my account" is almost always an email mismatch, not a backend failure. Start there.
+- Do not assume the account doesn't exist -- the purchase email might simply differ from what they're entering.
+
+---
+
+## Universal License — Old license activates instead of newly purchased one
+
+### Summary
+
+**Product:** Universal License / Any App
+**Issue:** Customer purchased a new license but the app keeps activating with an old, expired license from the same account.
+
+### Symptoms
+
+- App shows an expiry date from months or years ago, not the recent purchase.
+- Dashboard shows multiple license entries for the same email.
+- Customer followed activation steps correctly.
+- New purchase confirmation email exists but the old license keeps being picked up.
+
+### Common Customer Phrases
+
+- "It shows a license from [old date], not my new one."
+- "I just bought a license but it's activating the wrong one."
+- "The app shows expired even though I purchased last month."
+- "It keeps bringing up the old license."
+
+### Questions to Ask
+
+- What expiry date is the app currently showing?
+- What email was used for the new purchase?
+- Do they have a second email that might also have a license?
+- Can they share a screenshot of the dashboard showing all license entries?
+
+### Root Cause Candidates
+
+- Two licenses exist on the same account; app or dashboard picks the older one.
+- New license was purchased under a different email than the one being used for activation.
+- Legacy license key (old XXXXX-XXXXX format) is cached locally and overrides Universal License activation.
+
+### Resolution
+
+1. Ask for a screenshot of the dashboard showing all licenses and expiry dates.
+2. Confirm which entry is the new license based on the purchase date.
+3. If both licenses are on the same email: try clicking Reset License on the old entry, then Activate on the new one.
+4. If the new license is under a different email: guide the customer to use the correct email in the dashboard.
+5. If the old license appears to be a legacy key (XXXXX-XXXXX format): direct them to https://softorino.com/earlier-versions and explain the difference between legacy keys and Universal License.
+6. If none of the above works: escalate to @AndrewQA to manually deactivate the old license on the backend.
+
+### Escalate If
+
+- Both licenses are under the same email and reset + reactivate doesn't help.
+- App consistently activates the wrong license even after the correct email is confirmed.
+- Customer has been stuck on this for more than 2 exchanges.
+
+### Internal Notes
+
+- Do not ask the customer to "just try again" after they have already tried multiple times.
+- When two licenses exist on the same account, a backend fix is almost always needed. Escalate early rather than repeating the same steps.
+- If the customer mentions "Anniversary Edition" of SYC PRO: this refers to a specific promotional version. Verify with @AndrewQA what build is currently available and how to download it -- do not guess.
